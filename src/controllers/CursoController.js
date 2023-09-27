@@ -21,7 +21,12 @@ class CursoController extends Controller {
     // se existir data final, idem
     data_final ? where.data_inicio[Op.lte] = data_final : null;
 
-    
+    try {
+      const listaCursos = await cursoServices.pegaTodosOsRegistros(where);
+      return res.status(200).json(listaCursos);
+    } catch (erro) {
+      return res.status(500).json({ erro: erro.message });
+    }
 
   }
 }

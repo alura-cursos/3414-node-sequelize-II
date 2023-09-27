@@ -14,8 +14,20 @@ class MatriculaController extends Controller {
       const listaMatriculasPorEstudante = await matriculaServices.pegaEContaRegistros({
         estudante_id: Number(estudante_id),
         status: 'matriculado'
-      })
+      });
       return res.status(200).json(listaMatriculasPorEstudante);
+    } catch (erro) {
+      return res.status(500).json({ erro: erro.message });
+    }
+  }
+
+  async pegaCursosLotados (req, res) {
+    const lotacaoCurso = 2;
+    try {
+      const cursosLotados = await matriculaServices.pegaEContaRegistros({
+        status: 'matriculado'
+      });
+      return res.status(200).json(cursosLotados);
     } catch (erro) {
       return res.status(500).json({ erro: erro.message });
     }

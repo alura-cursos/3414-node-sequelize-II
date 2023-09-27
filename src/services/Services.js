@@ -24,7 +24,7 @@ class Services {
   async pegaEContaRegistros(where) {
     return dataSource[this.model].findAndCountAll({
       where: { ...where },
-      limit: 2,
+      // limit: 2,
       order: [['id', 'DESC']]
     });
   }
